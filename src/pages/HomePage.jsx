@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ALL_COUNTRIES } from '../config'
 import { Controls } from '../components/Controls'
 import { List } from '../components/List'
 import { Card } from '../components/Card'
+import { ALL_COUNTRIES } from '../config'
 
 export const HomePage = ({ setCountries, countries }) => {
     const [filteredCountries, setFilteredCountries] = useState(countries);
@@ -19,7 +19,9 @@ export const HomePage = ({ setCountries, countries }) => {
         }
 
         if (search) {
-            data = data.filter(c => c.name.common.toLowerCase().includes(search.toLowerCase()))
+            data = data.filter((c) =>
+                c.name.toLowerCase().includes(search.toLowerCase())
+            );
         }
 
         setFilteredCountries(data);
@@ -27,10 +29,14 @@ export const HomePage = ({ setCountries, countries }) => {
 
     useEffect(() => {
         if (!countries.length)
-            axios.get(ALL_COUNTRIES).then(
-                ({ data }) => setCountries(data)
-            )
+            axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
+        // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        handleSearch();
+        // eslint-disable-next-line
+    }, [countries])
 
     return (
         <>
@@ -39,7 +45,7 @@ export const HomePage = ({ setCountries, countries }) => {
                 {filteredCountries.map((c) => {
                     const countryInfo = {
                         img: c.flags.png,
-                        name: c.name.common,
+                        name: c.name,
                         info: [
                             {
                                 title: 'Population',
@@ -57,8 +63,8 @@ export const HomePage = ({ setCountries, countries }) => {
                     };
 
                     return <Card
-                        key={c.name.common}
-                        onClick={() => navigate(`/country/${c.name.common}`)}
+                        key={c.name}
+                        onClick={() => navigate(`/country/${c.name}`)}
                         {...countryInfo}
                     />
                 })}
