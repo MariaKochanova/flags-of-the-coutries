@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: "/flags-of-the-coutries/",
+  build: {
+    outDir: "docs", // Теперь Vite будет собирать сайт в docs/
+  },
 })

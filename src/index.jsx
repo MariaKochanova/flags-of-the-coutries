@@ -6,7 +6,7 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/flags-of-the-coutries">
+    <BrowserRouter basename="flags-of-the-coutries">
       <App />
     </BrowserRouter>
   </StrictMode>,
