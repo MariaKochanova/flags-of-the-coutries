@@ -151,7 +151,7 @@ export const Info = (props) => {
                             ))}
                         </ListItem>
                         <ListItem>
-                            <b>Top Level Domain</b>{' '}
+                            <b>Languages</b>{' '}
                             {languages.map((l) => (
                                 <span key={l.name}>{l.name}</span>
                             ))}
